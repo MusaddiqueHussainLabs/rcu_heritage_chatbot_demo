@@ -1,0 +1,15 @@
+microsoft-agents-hosting-aiohttp==0.7.0
+PyMuPDF==1.26.7
+langchain==1.2.4
+langchain-ollama==1.0.1
+langchain-community==0.4.1
+langchain-huggingface==1.2.0
+langchain-groq==1.1.2
+langchain-chroma==1.1.0
+ollama==0.6.1
+pillow==12.1.0
+tqdm==4.67.3
+sentence-transformers==5.2.2
+# faiss-cpu==1.13.2
+open-clip-torch==3.2.0
+python-dotenv==1.2.1
