@@ -77,8 +77,8 @@ class State(TypedDict):
 @AGENT_APP.conversation_update("membersAdded")
 async def on_members_added(context: TurnContext, _state: TurnState):
     await context.send_activity(
-        "Welcome to the empty agent! "
-        "This agent is designed to be a starting point for your own agent development."
+        "Welcome to the RCU Heritage AI Assistant! "
+        "I can help you explore the AlUla Collections - 100 Objects dataset through intelligent search and discovery."
     )
     return True
 
