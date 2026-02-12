@@ -30,10 +30,6 @@ The system uses:
 
 ---
 
-Perfect — add the following section in your `README.md` under a new heading like:
-
----
-
 ## 📚 Data Source Attribution
 
 The PDF document used in this repository:
