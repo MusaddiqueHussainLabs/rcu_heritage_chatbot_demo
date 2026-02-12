@@ -31,24 +31,65 @@ image_collection = client.get_or_create_collection(
     name="heritage_images"
 )
 
+# @tool(response_format="content_and_artifact")
+# def retrieve_text_context(query: str):
+#     """Retrieve object metadata and descriptions from AlUla collections."""
+    
+#     docs = text_vector_store.similarity_search(query, k=3)
+
+#     serialized = "\n\n".join(
+#         f"Inventory: {doc.metadata.get('inv_no')}\n"
+#         f"Content:\n{doc.page_content}"
+#         for doc in docs
+#     )
+
+#     return serialized, docs
+
 @tool(response_format="content_and_artifact")
 def retrieve_text_context(query: str):
     """Retrieve object metadata and descriptions from AlUla collections."""
-    
+
     docs = text_vector_store.similarity_search(query, k=3)
+
+    if not docs:
+        return "No matching objects found.", []
 
     serialized = "\n\n".join(
         f"Inventory: {doc.metadata.get('inv_no')}\n"
+        f"Images: {doc.metadata.get('images')}\n"
         f"Content:\n{doc.page_content}"
         for doc in docs
     )
 
     return serialized, docs
 
+
+# @tool(response_format="content_and_artifact")
+# def retrieve_by_inventory(inv_no: str):
+#     """Retrieve object details using exact inventory number."""
+    
+#     docs = text_vector_store.similarity_search(
+#         inv_no,
+#         k=1,
+#         filter={"inv_no": inv_no}
+#     )
+
+#     if not docs:
+#         return "No object found with this inventory number.", []
+
+#     doc = docs[0]
+
+#     serialized = (
+#         f"Inventory: {doc.metadata.get('inv_no')}\n"
+#         f"{doc.page_content}"
+#     )
+
+#     return serialized, docs
+
 @tool(response_format="content_and_artifact")
 def retrieve_by_inventory(inv_no: str):
     """Retrieve object details using exact inventory number."""
-    
+
     docs = text_vector_store.similarity_search(
         inv_no,
         k=1,
@@ -62,6 +103,7 @@ def retrieve_by_inventory(inv_no: str):
 
     serialized = (
         f"Inventory: {doc.metadata.get('inv_no')}\n"
+        f"Images: {doc.metadata.get('images')}\n\n"
         f"{doc.page_content}"
     )
 
